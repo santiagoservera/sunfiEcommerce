@@ -6,6 +6,8 @@ import React, { createContext, useState, useContext, ReactNode } from 'react';
 interface MyContextType {
   value: string;
   login: ({ username, password }: any) => void;
+  isLogin: boolean;
+  setIsLogin: (value: boolean) => void;
 }
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -15,6 +17,8 @@ export const MyAuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [value, setValue] = useState<string>('Valor inicial');
+
+  const [isLogin, setIsLogin] = useState<boolean>(true);
 
   const login = async (data: any) => {
     /* const response = await axios.post('aaaa');
@@ -31,7 +35,7 @@ export const MyAuthProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   return (
-    <AuthContext.Provider value={{ value, login }}>
+    <AuthContext.Provider value={{ value, login, isLogin, setIsLogin }}>
       {children}
     </AuthContext.Provider>
   );

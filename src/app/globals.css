@@ -6,11 +6,25 @@
   @apply w-11/12 max-w-[1600px] mx-auto;
 }
 
-.bg-ecommerce{
+.bg-ecommerce {
   width: 100%;
-  background: url('../../public/backgroundEcommerce.png') center center/cover no-repeat,
-  linear-gradient(4.4deg, #5B1B67 -18.98%, #0E040F 100.96%);
+  background: url('../../public/backgroundEcommerce.png') center center/cover
+      no-repeat,
+    linear-gradient(4.4deg, #5b1b67 -18.98%, #0e040f 100.96%);
   height: auto;
-  
 }
 
+/* Auth Menu desing */
+.menu > a {
+  border-radius: 9999px 0 0 9999px;
+  padding: 14px 24px;
+  font-weight: bold;
+  text-align: center;
+  transition: color 0.5s;
+  color: white;
+}
+
+.menu > a:target {
+  background-color: white;
+  color: black;
+}
