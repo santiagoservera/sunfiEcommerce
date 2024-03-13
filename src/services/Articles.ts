@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const apiUrl = 'https://ecommerce-suinfi-production.up.railway.app/api/v1/articulos/findAll?limit=100&offset=1';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 //Fetching all articles
 const fetchArticles = async () => {
   try {
-    const response = await axios.get(apiUrl);
+    const response = await axios.get(`${baseUrl}articulos/findAll?limit=100&offset=1`);
 
     if (response.status !== 200) {
       throw new Error('Error al obtener los datos');
@@ -20,3 +20,4 @@ const fetchArticles = async () => {
 };
 
 export default fetchArticles;
+
