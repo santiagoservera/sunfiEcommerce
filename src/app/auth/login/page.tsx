@@ -6,8 +6,10 @@ import Image from 'next/image';
 
 import { Login } from '@/components/Login';
 import { useAuth } from '@/context/Auth';
+import { useEffect } from 'react';
 
 export default function page() {
-  const { value, setValue } = useAuth();
+  const { value, login } = useAuth();
+
   return <h1>Login</h1>;
 }

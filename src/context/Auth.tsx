@@ -1,11 +1,13 @@
 // contexts/MyContext.tsx
 'use client';
+import axios from 'axios';
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 interface MyContextType {
   value: string;
-  setValue: (value: string) => void;
+  login: ({ username, password }: any) => void;
 }
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 const AuthContext = createContext<MyContextType | undefined>(undefined);
 
@@ -14,8 +16,22 @@ export const MyAuthProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [value, setValue] = useState<string>('Valor inicial');
 
+  const login = async (data: any) => {
+    /* const response = await axios.post('aaaa');
+    if (response.status) {
+      console.log(response.data);
+    } */
+  };
+
+  const register = async (data: any) => {
+    const response = await axios.post(`${baseUrl}auth/register`, data);
+    if (response.status) {
+      console.log(response.data);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ value, setValue }}>
+    <AuthContext.Provider value={{ value, login }}>
       {children}
     </AuthContext.Provider>
   );
