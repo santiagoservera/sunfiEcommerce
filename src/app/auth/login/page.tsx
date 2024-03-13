@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 //Components
 
-import { Login } from '@/components/Login';
+import { Login } from '@/components/auth/Login';
 import { useAuth } from '@/context/Auth';
 import { useEffect } from 'react';
 
