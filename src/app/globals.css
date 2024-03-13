@@ -28,3 +28,45 @@
   background-color: white;
   color: black;
 }
+
+.menu > .a-button::after,
+.menu > .a-button::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: 0;
+  width: 20px;
+  height: 50px;
+  border-radius: 0 0 25px 0;
+}
+
+.menu > .a-button::before {
+  top: auto;
+  bottom: 18px;
+  border-radius: 0 25px 0 0;
+}
+
+.menu > .b-button::after,
+.menu > .b-button::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  right: 0;
+  width: 20px;
+  height: 50px;
+  border-radius: 0 0 25px 0;
+}
+
+.menu > .b-button::before {
+  top: auto;
+  bottom: -50px;
+  border-radius: 0 25px 0 0;
+}
+
+.menu > a:target::after {
+  box-shadow: 0 25px 0 0 white;
+}
+
+.menu > a:target::before {
+  box-shadow: 0 -25px 0 0 white;
+}

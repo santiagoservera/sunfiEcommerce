@@ -57,7 +57,7 @@ export default function page() {
               href="#login"
               id="login"
               onClick={() => setIsLogin(true)}
-              className="cursor-pointer hidden md:block "
+              className="cursor-pointer hidden md:block a-button"
             >
               LOGIN
             </a>
@@ -65,7 +65,7 @@ export default function page() {
               href="#register"
               id="register"
               onClick={() => setIsLogin(false)}
-              className="cursor-pointer hidden md:block"
+              className="cursor-pointer hidden md:block b-button"
             >
               SIGN IN
             </a>
