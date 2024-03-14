@@ -70,3 +70,7 @@
 .menu > a:target::before {
   box-shadow: 0 -25px 0 0 white;
 }
+
+.bgnewProduct {
+  background: linear-gradient(180deg, #efd0ec 0%, #f8f8f8 100%);
+}
