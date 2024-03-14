@@ -1,7 +1,17 @@
+'use client';
 import Link from 'next/link';
-import React from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
 
 export const Navbar = () => {
+  const [search, setSearch] = useState('');
+  const router = useRouter();
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (search.length > 0) {
+      router.push(`/search/${search}`);
+    }
+  };
   return (
     <header className="w-full z-10 bg-[#2F0F35] border-[1px] border-[#855E98] overflow-hidden">
       <nav className="containerWidth flex flex-wrap justify-between items-center py-4 lg:py-0 text-lg h-20 text-[#d8d8d8] ">
@@ -30,10 +40,11 @@ export const Navbar = () => {
           </div>
 
           <div className="lg:flex gap-10 mr-10 ml-10">
-            <form className="relative items-center">
+            <form className="relative items-center" onSubmit={handleSubmit}>
               <input
+                onChange={(e) => setSearch(e.target.value)}
                 type="text"
-                value=""
+                value={search}
                 className="relative flex w-[200px] h-7 lg:h-9 lg:w-[400px] rounded-full border-none bg-gradient-to-r from-[#4f1f57] to-[#2f0f35] pl-5 pr-12 text-[#d8d8d8] outline-none focus:cursor-text font-normal searchValue"
               />
               <img
