@@ -1,4 +1,5 @@
-import React from "react";
+import Link from 'next/link';
+import React from 'react';
 
 export const Navbar = () => {
   return (
@@ -42,13 +43,13 @@ export const Navbar = () => {
               />
             </form>
 
-            <a href="">
+            <Link href="/auth">
               <img
                 src="/userIconNavBar.png"
                 alt=""
                 className="hover:cursor-pointer  min-w-7"
               />
-            </a>
+            </Link>
 
             <a href="">
               <img

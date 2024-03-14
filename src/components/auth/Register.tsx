@@ -1,13 +1,48 @@
-import React from 'react';
+import { useAuth } from '@/context/Auth';
+import React, { useState } from 'react';
 
 export const Register = () => {
+  const { register } = useAuth();
+  const [userData, setUserData] = useState({
+    username: '',
+    nombre: '',
+    apellido: '',
+    email: '',
+    tipCedula: 'dni',
+    cedula: '12345678',
+    celular: '',
+    direccion: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setUserData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      await register(userData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="w-full h-[442px] flex justify-center items-center relative">
       <h1 className="absolute top-[12%] font-bold text-4xl md:hidden">
         SIGN IN
       </h1>
       <div className="w-full h-full flex justify-center items-center">
-        <form action="" className="flex flex-col items-center w-[75%] mx-auto">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center w-full md:w-[75%] mx-auto"
+        >
           <div className="flex items-center mb-6">
             <div className="relative">
               <img
@@ -17,8 +52,11 @@ export const Register = () => {
               />
               <input
                 type="text"
-                placeholder="Nombre"
+                name="username"
+                placeholder="Username"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
+                value={userData.username}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -31,8 +69,28 @@ export const Register = () => {
               />
               <input
                 type="text"
+                name="nombre"
+                placeholder="Nombre"
+                className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
+                value={userData.nombre}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className="flex items-center mb-6">
+            <div className="relative">
+              <img
+                src="/arrowIconSignUp.png"
+                alt=""
+                className="absolute left-0 top-1/2 transform -translate-y-1/2"
+              />
+              <input
+                type="text"
+                name="apellido"
                 placeholder="Apellido"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
+                value={userData.apellido}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -45,8 +103,45 @@ export const Register = () => {
               />
               <input
                 type="email"
+                name="email"
                 placeholder="Email"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
+                value={userData.email}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className="flex items-center mb-6">
+            <div className="relative">
+              <img
+                src="/arrowIconSignUp.png"
+                alt=""
+                className="absolute left-0 top-1/2 transform -translate-y-1/2"
+              />
+              <input
+                type="text"
+                name="celular"
+                placeholder="Numero de Telefono"
+                className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
+                value={userData.celular}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className="flex items-center mb-6">
+            <div className="relative">
+              <img
+                src="/arrowIconSignUp.png"
+                alt=""
+                className="absolute left-0 top-1/2 transform -translate-y-1/2"
+              />
+              <input
+                type="text"
+                name="direccion"
+                placeholder="Direccion"
+                className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
+                value={userData.direccion}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -59,8 +154,11 @@ export const Register = () => {
               />
               <input
                 type="password"
+                name="password"
                 placeholder="Password"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
+                value={userData.password}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -73,8 +171,11 @@ export const Register = () => {
               />
               <input
                 type="password"
+                name="confirmPassword"
                 placeholder="Confirm Password"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
+                value={userData.confirmPassword}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -88,7 +189,7 @@ export const Register = () => {
           </div>
         </form>
       </div>
-      <div className="absolute bottom-5 w-[75%] flex justify-between text-gray-400 text-xs">
+      <div className="absolute bottom-5 w-full md:w-[75%] flex justify-between text-gray-400 text-xs">
         <div className="flex justify-center items-center font-semibold">
           <p>Or connect with</p>
         </div>
