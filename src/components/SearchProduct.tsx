@@ -27,7 +27,8 @@ export const SearchProduct = () => {
     fetchData();
   }, [searchParams.query]);
   console.log(dataSearch);
-  console.log(searchParams);
+
+  // console.log(searchParams);
 
   return (
     <>
@@ -81,49 +82,44 @@ export const SearchProduct = () => {
             )}
           </div>
 
-          {/* <div
-      className="w-full h-full bgSearch p-7"
-      *ngIf="!isLoading && articlesList() && articlesList().length > 0"
-    >
-      @for (article of articlesList(); track $index) {
-      <div
-        className="bg-white lg:h-[300px] lg:w-full rounded-lg shadow-[0px_4px_4px_0px_#00000040] border border-[#0000004D] lg:mt-5"
-      >
-      
-        <div className="lg:w-full lg:flex lg:flex-row lg:py-5">
-          <div className="lg:w-[25%] lg:px-5 lg:h-full">
-            @for (articleImg of article.imagen; track $index) { @if(article.id
-            === articleImg.id){
+          <div className="w-full h-full bgSearch p-7">
+            {/* @for (article of articlesList(); track $index) { */}
+            {dataSearch.map((item: any) => (
+              <div className="bg-white lg:h-[300px] lg:w-full rounded-lg shadow-[0px_4px_4px_0px_#00000040] border border-[#0000004D] lg:mt-5">
+                <div className="lg:w-full lg:flex lg:flex-row lg:py-5">
+                  <div className="lg:w-[25%] lg:px-5 lg:h-full">
+                    {/* @for (articleImg of article.imagen; track $index) { @if(article.id
+            === articleImg.id){ */}
 
-            <img
-              src="{{ articleImg.imagenNew }}"
-              alt="img article"
-              className="bg-violet-400 w-full h-full"
-            />
+                    <img
+                      src="{{ articleImg.imagenNew }}"
+                      alt="img article"
+                      className="bg-violet-400 w-full h-full"
+                    />
 
-            } }
+                    {/* } } */}
+                  </div>
+
+                  <div className="lg:h-full lg:w-full lg:flex lg:flex-col ">
+                    <div className="flex flex-col gap-10 pt-10 pb-5 ">
+                      <p className="text-2xl font-semibold uppercase">
+                        {item.nombre}
+                      </p>
+                      <p className="text-2xl font-normal flex flex-row text-start">
+                        <td>$</td>
+                        {item.precio}
+                      </p>
+                    </div>
+                    <div className="w-full flex justify-end pr-10">
+                      <button className="w-[150px] text-center border-black border p-3 rounded-3xl font-bold">
+                        VER
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-
-          <div className="lg:h-full lg:w-full lg:flex lg:flex-col ">
-            <div className="flex flex-col gap-10 pt-10 pb-5 ">
-              <p className="text-2xl font-semibold uppercase">{{ article.nombre }}</p>
-              <p className="text-2xl font-normal flex flex-row text-start">
-                <td>$</td>
-                {{ article.precio }}
-              </p>                                
-          </div>
-          <div className="w-full flex justify-end pr-10">
-            <button className="w-[150px] text-center border-black border p-3 rounded-3xl font-bold">
-              VER
-            </button>
-          </div>
-        </div>  
-
-        </div>
-     
-      </div>
-      }
-    </div> */}
         </div>
         {!isLoading && (!dataSearch || dataSearch.length === 0) && (
           <div className="containerWidth lg:w-full text-center bg-white shadow-lg rounded-lg lg:flex lg:justify-between">
