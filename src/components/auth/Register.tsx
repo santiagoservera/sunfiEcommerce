@@ -32,6 +32,14 @@ export const Register = () => {
       console.log(error);
     }
   };
+  
+  function YourComponent() {
+    const [step, setStep] = useState(1); // Estado para controlar el paso actual
+  
+    const handleChangeStep = () => {
+      setStep((prevStep) => (prevStep === 1 ? 2 : 1)); // Cambia entre el paso 1 y el paso 2
+    };
+  };
 
   return (
     <div className="w-full h-[442px] flex justify-center items-center relative">
@@ -42,7 +50,9 @@ export const Register = () => {
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-center w-full md:w-[75%] mx-auto"
+          
         >
+
           <div className="flex items-center mb-6">
             <div className="relative">
               <img
@@ -189,7 +199,7 @@ export const Register = () => {
           </div>
         </form>
       </div>
-      <div className="absolute bottom-5 w-full md:w-[75%] flex justify-between text-gray-400 text-xs">
+      {/* <div className="absolute bottom-5 w-full md:w-[75%] flex justify-between text-gray-400 text-xs">
         <div className="flex justify-center items-center font-semibold">
           <p>Or connect with</p>
         </div>
@@ -211,7 +221,7 @@ export const Register = () => {
             <p>Facebook</p>
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
