@@ -38,8 +38,8 @@ export const AsideProfile = () => {
 
   return (
     <>
-      <div className="container-profile overflow-auto flex justify-between bg-gradient-to-b from-[#EFD0EC] to-[#F8F8F8] w-full min-h-screen">
-        <aside className="bg-[#37133E] lg:w-1/4  my-0 text-[#D1C0D4] flex flex-col gap-1 text-center">
+      <div className="container-profile overflow-auto flex justify-between bg-gradient-to-b from-[#EFD0EC] to-[#F8F8F8] min-h-screen">
+        <aside className="bg-[#37133E] lg:text-base md:text-sm sm:text-xs  lg:w-1/4 my-0 text-[#D1C0D4] lg:flex lg:flex-col gap-1 text-center">
           <button
             type="button"
             onClick={() => router.push('/profile/account')}

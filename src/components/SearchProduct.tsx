@@ -15,8 +15,8 @@ export const SearchProduct = () => {
       setIsLoading(true);
       try {
         await fetchArticles(searchParams.query).then((results: any) => {
-          if (results.status) {
-            setDataSearch(results.data);
+          if (results) {
+            setDataSearch(results);
           }
         });
       } catch (error) {
