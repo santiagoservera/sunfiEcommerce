@@ -1,8 +1,11 @@
 'use client';
 import img1 from '../../public/Adobe Photoshop 2024.png';
+import { useRouter } from 'next/navigation';
 import fetchArticles from '@/services/Articles';
 import React from 'react';
 import { useEffect, useState } from 'react';
+
+
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -16,6 +19,7 @@ import Image from 'next/image';
 
 export const Products = () => {
   const [articles, setArticles] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +33,12 @@ export const Products = () => {
 
     fetchData();
   }, []);
+
+
+  const handleClickById = (productId: number) => {
+    router.push(`/product-detail/${productId}`);
+  };
+  
 
   return (
     <>
@@ -67,6 +77,7 @@ export const Products = () => {
           {articles.slice(0, 9).map((item: any) => (
             <SwiperSlide className="flex items-center justify-center">
               <div className="w-[300px] h-[460px] flex flex-col justify-center items-center gap-2">
+              <a onClick={() => handleClickById(item.id)} className='cursor-pointer'>
                 {/* <div class="">
             @for (articleImg of article.imagen; track $index) { @if(article.id === articleImg.id){
               <div class="">
@@ -88,6 +99,7 @@ export const Products = () => {
                     {item.nombre}
                   </p>
                 </div>
+                </a>
               </div>
             </SwiperSlide>
           ))}
@@ -120,6 +132,7 @@ export const Products = () => {
           {articles.slice(10, 20).map((item: any) => (
             <SwiperSlide className="flex items-center justify-center">
               <div className="w-[300px] h-[460px] flex flex-col justify-center items-center gap-2">
+              <a onClick={() => handleClickById(item.id)} className='cursor-pointer'>
                 {/* <div class="">
             @for (articleImg of article.imagen; track $index) { @if(article.id === articleImg.id){
               <div class="">
@@ -141,6 +154,7 @@ export const Products = () => {
                     {item.nombre}
                   </p>
                 </div>
+                </a>
               </div>
             </SwiperSlide>
           ))}
@@ -173,6 +187,7 @@ export const Products = () => {
           {articles.slice(21, 31).map((item: any) => (
             <SwiperSlide className="flex items-center justify-center">
               <div className="w-[300px] h-[460px] flex flex-col justify-center items-center gap-2">
+              <a onClick={() => handleClickById(item.id)} className='cursor-pointer'>
                 {/* <div class="">
             @for (articleImg of article.imagen; track $index) { @if(article.id === articleImg.id){
               <div class="">
@@ -194,6 +209,7 @@ export const Products = () => {
                     {item.nombre}
                   </p>
                 </div>
+                </a>
               </div>
             </SwiperSlide>
           ))}

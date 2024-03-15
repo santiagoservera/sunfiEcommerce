@@ -25,3 +25,17 @@ const fetchArticles = async (search?: string | undefined | string[]) => {
 };
 
 export default fetchArticles;
+
+
+const fetchProductById = async (productId?: string | undefined | string[]) => {
+  const url = `articulos/findOne/${productId}`;
+  try {
+    const response = await axios.get(`${baseUrl}${url}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching product with ID ${productId}:`, error);
+    throw error;
+  }
+};
+
+export { fetchProductById };
