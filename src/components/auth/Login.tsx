@@ -1,12 +1,14 @@
 'use client';
 import React, { useState } from 'react';
 import { useAuth } from '../../context/Auth';
+import { useForm } from 'react-hook-form';
+
 
 export const Login = () => {
+  
   const { login } = useAuth();
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
@@ -30,12 +32,15 @@ export const Login = () => {
               alt="user-icon"
               className="w-[13px] h-[14px]"
             />
+            {/* username */}
             <input
+            
               type="text"
               placeholder="Username"
               className=" outline-none w-[250px] sm:w-[400px] md:w-[300px]"
               value={username}
               onChange={(e) => setUserName(e.target.value)}
+              
             />
           </div>
           <div className="flex items-center gap-2 border-black border-b-[1px]">
@@ -44,6 +49,7 @@ export const Login = () => {
               alt="password-icon"
               className="w-[13px] h-[14px]"
             />
+            {/* password */}
             <input
               type="password"
               placeholder="Password"
