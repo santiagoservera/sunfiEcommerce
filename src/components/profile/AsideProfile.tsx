@@ -8,7 +8,7 @@ import customerPic from '../../../public/Customer.png';
 import securityPic from '../../../public/Security Shield.png';
 import magneticCardPic from '../../../public/Magnetic Card.png';
 //Components
-import { Account } from '@/components/Account';
+import { Account } from '@/components/profile/Account';
 import { Security } from '@/components/profile/Security';
 import { Cards } from '@/components/profile/Cards';
 
