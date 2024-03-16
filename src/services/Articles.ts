@@ -26,7 +26,6 @@ const fetchArticles = async (search?: string | undefined | string[]) => {
 
 export default fetchArticles;
 
-
 const fetchProductById = async (productId?: string | undefined | string[]) => {
   const url = `articulos/findOne/${productId}`;
   try {
@@ -39,3 +38,18 @@ const fetchProductById = async (productId?: string | undefined | string[]) => {
 };
 
 export { fetchProductById };
+
+export const postProduct = async (data: any) => {
+  const urlCreate = 'articulos';
+  try {
+    const response = await axios.post(`${baseUrl}${urlCreate}`, data);
+    if (response.status !== 200) {
+      throw new Error('Error al crear el producto');
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+};

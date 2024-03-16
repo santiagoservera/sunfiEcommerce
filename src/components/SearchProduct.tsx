@@ -1,8 +1,12 @@
+//We indicate that we are working on the client side
 'use client';
-
+//Imports
+//Service import
 import fetchArticles from '@/services/Articles';
+//Native imports
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+//Components imports
 import { Loader } from './Loader';
 
 export const SearchProduct = () => {
@@ -10,6 +14,7 @@ export const SearchProduct = () => {
   const [dataSearch, setDataSearch] = useState([]);
   const [isLoading, setIsLoading] = useState<boolean>();
 
+  //search by query
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -28,14 +33,12 @@ export const SearchProduct = () => {
   }, [searchParams.query]);
   console.log(dataSearch);
 
-  // console.log(searchParams);
-
   return (
     <>
-      <div className="w-full items-center flex justify-center">
+      <div className="w-full items-center flex justify-center bgnewProduct ">
         {isLoading && <Loader />}
       </div>
-      <div className="w-full h-full min-h-screen">
+      <div className="w-full h-full min-h-screen bgnewProduct">
         <div className="lg:w-full lg:flex lg:flex-row h-full ">
           <div className=" lg:w-[30%] h-full flex items-center ">
             {dataSearch.length >= 1 && (
@@ -83,14 +86,11 @@ export const SearchProduct = () => {
           </div>
 
           <div className="w-full h-full bgSearch p-7">
-            {/* @for (article of articlesList(); track $index) { */}
+            {/* Map of products */}
             {dataSearch.map((item: any) => (
               <div className="bg-white lg:h-[300px] lg:w-full rounded-lg shadow-[0px_4px_4px_0px_#00000040] border border-[#0000004D] lg:mt-5">
                 <div className="lg:w-full lg:flex lg:flex-row lg:py-5">
                   <div className="lg:w-[25%] lg:px-5 lg:h-full">
-                    {/* @for (articleImg of article.imagen; track $index) { @if(article.id
-            === articleImg.id){ */}
-
                     <img
                       src="{{ articleImg.imagenNew }}"
                       alt="img article"
