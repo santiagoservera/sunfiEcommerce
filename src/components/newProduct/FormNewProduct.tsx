@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { postProduct } from '@/services/Articles';
+import React, { useEffect, useState } from 'react';
 
 type Props = {
   setSection: any;
@@ -10,34 +11,50 @@ export const FormNewProduct = ({
   setSection,
   dataProduct,
   setDataProduct,
-  
 }: Props) => {
-
   const [formData, setFormData] = useState({
     nombre: '',
     descripcion: '',
     precio: '',
+    categoriaId: 1,
+    usuarioId: 4,
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
 
+  // useEffect(() => {
+  //   const postData = async () => {
+  //     try {
+  //       const data = await uploadProduct();
+  //       setFormData(data);
+  //     } catch (error) {}
+  //   };
+  //   postData();
+  // }, []);
+
   // Funcion para el boton que guarda los datos
   const handleSubmit = () => {
-    // Aquí puedes hacer lo que necesites con los datos del producto, por ejemplo, enviarlos a un servidor
     console.log('Datos del producto:', formData);
-    // Luego puedes resetear el formulario o hacer cualquier otra acción necesaria
+    postProduct(formData).then((Response) => {
+      console.log(Response);
+    });
     setFormData({
       nombre: '',
       descripcion: '',
       precio: '',
-    })};
-  
+      categoriaId: 1,
+      usuarioId: 4,
+    });
+  };
+
   return (
     <div>
       <div className="lg:w-full lg:flex lg:flex-row h-full bgnewProduct">
@@ -177,7 +194,10 @@ export const FormNewProduct = ({
                   <button className="border bg-white lg:px-16 lg:py-3 rounded-full">
                     CANCELAR
                   </button>
-                  <button className="border bg-[#2C0F32] lg:px-20 lg:py-3 text-white rounded-full "onClick={handleSubmit}>
+                  <button
+                    className="border bg-[#2C0F32] lg:px-20 lg:py-3 text-white rounded-full "
+                    onClick={handleSubmit}
+                  >
                     GUARDAR
                   </button>
                 </div>

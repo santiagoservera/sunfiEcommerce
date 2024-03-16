@@ -5,8 +5,6 @@ import fetchArticles from '@/services/Articles';
 import React from 'react';
 import { useEffect, useState } from 'react';
 
-
-
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -34,11 +32,9 @@ export const Products = () => {
     fetchData();
   }, []);
 
-
   const handleClickById = (productId: number) => {
     router.push(`/product-detail/${productId}`);
   };
-  
 
   return (
     <>
@@ -77,28 +73,31 @@ export const Products = () => {
           {articles.slice(0, 9).map((item: any) => (
             <SwiperSlide className="flex items-center justify-center">
               <div className="w-[300px] h-[460px] flex flex-col justify-center items-center gap-2">
-              <a onClick={() => handleClickById(item.id)} className='cursor-pointer'>
-                {/* <div class="">
+                <a
+                  onClick={() => handleClickById(item.id)}
+                  className="cursor-pointer"
+                >
+                  {/* <div class="">
             @for (articleImg of article.imagen; track $index) { @if(article.id === articleImg.id){
               <div class="">
                 <img src="{{ articleImg.imagenNew }}" alt="article img" class=" rounded-full"  />
               </div>
             } }
           </div> */}
-                <div>
-                  <Image
-                    width={300}
-                    height={460}
-                    src={img1}
-                    alt=""
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="text-center">
-                  <p className="font-semibold text-sm lg:w-[100%] text-black">
-                    {item.nombre}
-                  </p>
-                </div>
+                  <div>
+                    <Image
+                      width={300}
+                      height={460}
+                      src={img1}
+                      alt=""
+                      className=""
+                    />
+                  </div>
+                  <div className="text-center">
+                    <p className="font-semibold text-sm lg:w-[100%] text-black">
+                      {item.nombre}
+                    </p>
+                  </div>
                 </a>
               </div>
             </SwiperSlide>
@@ -132,28 +131,31 @@ export const Products = () => {
           {articles.slice(10, 20).map((item: any) => (
             <SwiperSlide className="flex items-center justify-center">
               <div className="w-[300px] h-[460px] flex flex-col justify-center items-center gap-2">
-              <a onClick={() => handleClickById(item.id)} className='cursor-pointer'>
-                {/* <div class="">
+                <a
+                  onClick={() => handleClickById(item.id)}
+                  className="cursor-pointer"
+                >
+                  {/* <div class="">
             @for (articleImg of article.imagen; track $index) { @if(article.id === articleImg.id){
               <div class="">
                 <img src="{{ articleImg.imagenNew }}" alt="article img" class=" rounded-full"  />
               </div>
             } }
           </div> */}
-                <div>
-                  <Image
-                    width={300}
-                    height={460}
-                    src={img1}
-                    alt=""
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="text-center">
-                  <p className="font-semibold text-sm lg:w-[100%] text-black">
-                    {item.nombre}
-                  </p>
-                </div>
+                  <div>
+                    <Image
+                      width={300}
+                      height={460}
+                      src={img1}
+                      alt=""
+                      className=""
+                    />
+                  </div>
+                  <div className="text-center">
+                    <p className="font-semibold text-sm lg:w-[100%] text-black">
+                      {item.nombre}
+                    </p>
+                  </div>
                 </a>
               </div>
             </SwiperSlide>
@@ -187,28 +189,31 @@ export const Products = () => {
           {articles.slice(21, 31).map((item: any) => (
             <SwiperSlide className="flex items-center justify-center">
               <div className="w-[300px] h-[460px] flex flex-col justify-center items-center gap-2">
-              <a onClick={() => handleClickById(item.id)} className='cursor-pointer'>
-                {/* <div class="">
+                <a
+                  onClick={() => handleClickById(item.id)}
+                  className="cursor-pointer"
+                >
+                  {/* <div class="">
             @for (articleImg of article.imagen; track $index) { @if(article.id === articleImg.id){
               <div class="">
                 <img src="{{ articleImg.imagenNew }}" alt="article img" class=" rounded-full"  />
               </div>
             } }
           </div> */}
-                <div>
-                  <Image
-                    width={300}
-                    height={460}
-                    src={img1}
-                    alt=""
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="text-center">
-                  <p className="font-semibold text-sm lg:w-[100%] text-black">
-                    {item.nombre}
-                  </p>
-                </div>
+                  <div>
+                    <Image
+                      width={300}
+                      height={460}
+                      src={img1}
+                      alt=""
+                      className=""
+                    />
+                  </div>
+                  <div className="text-center">
+                    <p className="font-semibold text-sm lg:w-[100%] text-black">
+                      {item.nombre}
+                    </p>
+                  </div>
                 </a>
               </div>
             </SwiperSlide>
