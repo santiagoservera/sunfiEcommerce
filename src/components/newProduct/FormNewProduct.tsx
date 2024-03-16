@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 type Props = {
   setSection: any;
@@ -10,8 +10,34 @@ export const FormNewProduct = ({
   setSection,
   dataProduct,
   setDataProduct,
-  handleChange,
+  
 }: Props) => {
+
+  const [formData, setFormData] = useState({
+    nombre: '',
+    descripcion: '',
+    precio: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  // Funcion para el boton que guarda los datos
+  const handleSubmit = () => {
+    // Aquí puedes hacer lo que necesites con los datos del producto, por ejemplo, enviarlos a un servidor
+    console.log('Datos del producto:', formData);
+    // Luego puedes resetear el formulario o hacer cualquier otra acción necesaria
+    setFormData({
+      nombre: '',
+      descripcion: '',
+      precio: '',
+    })};
+  
   return (
     <div>
       <div className="lg:w-full lg:flex lg:flex-row h-full bgnewProduct">
@@ -56,11 +82,12 @@ export const FormNewProduct = ({
                     </p>
                   </div>
                   <div>
-                    <p className="lg:text-lg font-medium">Nombre</p>
+                    <label className="lg:text-lg font-medium">Nombre</label>
                     <input
                       type="text"
                       className="border border-[#D9D9D9] w-full rounded-lg outline-none"
                       name="nombre"
+                      value={formData.nombre}
                       onChange={handleChange}
                     />
                   </div>
@@ -72,6 +99,7 @@ export const FormNewProduct = ({
                       rows={12}
                       cols={12}
                       name="descripcion"
+                      value={formData.descripcion}
                       onChange={handleChange}
                     ></textarea>
                   </div>
@@ -138,6 +166,7 @@ export const FormNewProduct = ({
                       className="border border-[#D9D9D9] w-full rounded-lg outline-none"
                       type="number"
                       name="precio"
+                      value={formData.precio}
                       onChange={handleChange}
                     />
                   </div>
@@ -148,7 +177,7 @@ export const FormNewProduct = ({
                   <button className="border bg-white lg:px-16 lg:py-3 rounded-full">
                     CANCELAR
                   </button>
-                  <button className="border bg-[#2C0F32] lg:px-20 lg:py-3 text-white rounded-full">
+                  <button className="border bg-[#2C0F32] lg:px-20 lg:py-3 text-white rounded-full "onClick={handleSubmit}>
                     GUARDAR
                   </button>
                 </div>
