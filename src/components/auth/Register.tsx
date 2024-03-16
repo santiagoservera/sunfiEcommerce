@@ -1,6 +1,7 @@
 'use client';
 import { useAuth } from '@/context/Auth';
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 export const Register = () => {
   const { register } = useAuth();
@@ -42,6 +43,7 @@ export const Register = () => {
     };
   }
 
+  
   return (
     <div className="w-full h-[442px] flex justify-center items-center relative">
       <h1 className="absolute top-[12%] font-bold text-4xl md:hidden">
@@ -59,6 +61,7 @@ export const Register = () => {
                 alt=""
                 className="absolute left-0 top-1/2 transform -translate-y-1/2"
               />
+              {/* username */}
               <input
                 type="text"
                 name="username"
@@ -76,10 +79,11 @@ export const Register = () => {
                 alt=""
                 className="absolute left-0 top-1/2 transform -translate-y-1/2"
               />
+               {/* name*/}
               <input
                 type="text"
                 name="nombre"
-                placeholder="Nombre"
+                placeholder="Name"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
                 value={userData.nombre}
                 onChange={handleChange}
@@ -93,10 +97,11 @@ export const Register = () => {
                 alt=""
                 className="absolute left-0 top-1/2 transform -translate-y-1/2"
               />
+               {/* lastname */}
               <input
                 type="text"
                 name="apellido"
-                placeholder="Apellido"
+                placeholder="Lastname"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
                 value={userData.apellido}
                 onChange={handleChange}
@@ -110,6 +115,7 @@ export const Register = () => {
                 alt=""
                 className="absolute left-0 top-1/2 transform -translate-y-1/2"
               />
+               {/* email */}
               <input
                 type="email"
                 name="email"
@@ -127,10 +133,11 @@ export const Register = () => {
                 alt=""
                 className="absolute left-0 top-1/2 transform -translate-y-1/2"
               />
+               {/* cellphone */}
               <input
                 type="text"
                 name="celular"
-                placeholder="Numero de Telefono"
+                placeholder="Number of cellphone"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
                 value={userData.celular}
                 onChange={handleChange}
@@ -144,6 +151,7 @@ export const Register = () => {
                 alt=""
                 className="absolute left-0 top-1/2 transform -translate-y-1/2"
               />
+               {/* Direccion */}
               <input
                 type="text"
                 name="direccion"
@@ -161,6 +169,7 @@ export const Register = () => {
                 alt=""
                 className="absolute left-0 top-1/2 transform -translate-y-1/2"
               />
+               {/* password */}
               <input
                 type="password"
                 name="password"
@@ -178,6 +187,7 @@ export const Register = () => {
                 alt=""
                 className="absolute left-0 top-1/2 transform -translate-y-1/2"
               />
+              {/* confirm password */}
               <input
                 type="password"
                 name="confirmPassword"
