@@ -2,13 +2,14 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/Auth';
 import { useForm } from 'react-hook-form';
-
+import { useRouter } from 'next/navigation';
 
 export const Login = () => {
-  
-  const { login } = useAuth();
+  const { login, dataLogin } = useAuth();
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
@@ -17,6 +18,10 @@ export const Login = () => {
       console.log(error);
     }
   };
+
+  if (dataLogin?.userLogin) {
+    router.push('/');
+  }
 
   return (
     <div className="w-full h-[442px] flex justify-center items-center relative">
@@ -34,13 +39,11 @@ export const Login = () => {
             />
             {/* username */}
             <input
-            
               type="text"
               placeholder="Username"
               className=" outline-none w-[250px] sm:w-[400px] md:w-[300px]"
               value={username}
               onChange={(e) => setUserName(e.target.value)}
-              
             />
           </div>
           <div className="flex items-center gap-2 border-black border-b-[1px]">

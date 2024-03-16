@@ -2,10 +2,18 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import { ModalCarrito } from './ModalCarrito';
+import { useAuth } from '@/context/Auth';
 
 export const Navbar = () => {
+  const { dataLogin, showModal, setShowModal } = useAuth();
   const [search, setSearch] = useState('');
   const router = useRouter();
+
+  const handleShowModal = () => {
+    setShowModal(!showModal);
+  };
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (search.length > 0) {
@@ -17,13 +25,13 @@ export const Navbar = () => {
       <nav className="containerWidth flex flex-wrap justify-between items-center py-4 lg:py-0 text-lg h-20 text-[#d8d8d8] ">
         <div className="text-base text-[#d8d8d8] lg:text-lg font-semibold flex  w-full justify-between items-center">
           <div className="lg:flex gap-20 items-center">
-            <a href="#" className="lg:text-base lg:font-semibold">
+            <Link href="/" className="lg:text-base lg:font-semibold">
               <img
                 src="/suinfiIconNavbar.png"
                 alt=""
                 className="min-w-7 ml-7"
               />
-            </a>
+            </Link>
 
             <a className="block hover:text-[#9468a9] text-nowrap" href="#">
               Categorías
@@ -54,7 +62,9 @@ export const Navbar = () => {
               />
             </form>
 
-            <Link href="/auth">
+            <Link
+              href={dataLogin.userLogin ? '/profile/account' : '/auth#login'}
+            >
               <img
                 src="/userIconNavBar.png"
                 alt=""
@@ -62,13 +72,16 @@ export const Navbar = () => {
               />
             </Link>
 
-            <a href="">
+            <a onClick={() => handleShowModal()}>
               <img
                 src="/ShoppingCart.png"
                 alt=""
                 className="hover:cursor-pointer min-w-10"
               />
             </a>
+            <div className="absolute right-[10%] top-[70px] z-[9999]">
+              {showModal && <ModalCarrito />}
+            </div>
           </div>
         </div>
       </nav>

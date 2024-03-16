@@ -20,7 +20,7 @@ const fetchCart = async () => {
 };
 
 //Fetching one cart
-const fetchOneCart = async (id: string) => {
+const fetchOneCart = async (id: number) => {
   const url = `carrito/findOne/${id}`;
   try {
     const response = await axios.get(`${baseUrl}${url}`);
@@ -92,10 +92,10 @@ const deleteCart = async (id: string) => {
 export { createCart, updateCart, deleteCart };
 
 //Add a product to a cart
-const addProductToCart = async (carritoId: string, data: any) => {
-  const url = `addItem/${carritoId}`;
+const addProductToCart = async (carritoId: number, data: any) => {
+  const url = `carrito/addItem/${carritoId}`;
   try {
-    const response = await axios.put(`${baseUrl}${url}`, data);
+    const response = await axios.post(`${baseUrl}${url}`, data);
 
     if (response.status !== 200) {
       throw new Error('Error al obtener los datos');
@@ -110,7 +110,7 @@ const addProductToCart = async (carritoId: string, data: any) => {
 
 //Remove a product from a cart
 const removeProductFromCart = async (carritoId: string, articuloId: string) => {
-  const url = `subItem/${carritoId}/${articuloId}`;
+  const url = `carrito/subItem/${carritoId}/${articuloId}`;
   try {
     const response = await axios.put(`${baseUrl}${url}`);
 

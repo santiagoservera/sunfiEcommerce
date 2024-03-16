@@ -8,6 +8,7 @@ import React, {
   ReactNode,
   useEffect,
 } from 'react';
+import { set } from 'react-hook-form';
 
 interface MyContextType {
   value: string;
@@ -25,6 +26,11 @@ interface MyContextType {
   }: any) => void;
   isLogin: boolean;
   setIsLogin: (value: boolean) => void;
+  cartResponse: boolean;
+  setCartResponse: (value: boolean) => void;
+  dataLogin: any;
+  showModal: boolean;
+  setShowModal: (value: boolean) => void;
 }
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const storedData = localStorage.getItem('dataLogin');
@@ -37,6 +43,8 @@ export const MyAuthProvider: React.FC<{ children: ReactNode }> = ({
   const [value, setValue] = useState<string>('Valor inicial');
   const [dataLogin, setDataLogin] = useState<any>(dataLs);
   const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [cartResponse, setCartResponse] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('dataLogin', JSON.stringify(dataLogin));
@@ -46,7 +54,10 @@ export const MyAuthProvider: React.FC<{ children: ReactNode }> = ({
     const response = await axios.post(`${baseUrl}auth/login`, data);
     if (response.status) {
       localStorage.setItem('dataLogin', JSON.stringify(response.data));
-      console.log(response.data);
+      setDataLogin((prevState: any) => {
+        return { ...prevState, userLogin: true };
+      });
+      console.log('response:', response.data);
     }
   };
 
@@ -59,7 +70,18 @@ export const MyAuthProvider: React.FC<{ children: ReactNode }> = ({
 
   return (
     <AuthContext.Provider
-      value={{ value, login, isLogin, setIsLogin, register }}
+      value={{
+        value,
+        login,
+        isLogin,
+        setIsLogin,
+        register,
+        cartResponse,
+        setCartResponse,
+        dataLogin,
+        showModal,
+        setShowModal,
+      }}
     >
       {children}
     </AuthContext.Provider>
