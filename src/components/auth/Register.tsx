@@ -5,6 +5,13 @@ import { useForm } from 'react-hook-form';
 
 export const Register = () => {
   const { register } = useAuth();
+  //Use form para validar los datos
+  const {
+    register: registerValidator,
+    handleSubmit: handleSubmitValidator,
+    formState: { errors },
+    getValues,
+  } = useForm();
   const [userData, setUserData] = useState({
     username: '',
     nombre: '',
@@ -25,11 +32,10 @@ export const Register = () => {
       [name]: value,
     }));
   };
-
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     try {
       await register(userData);
+      console.log('Se ha enviado correctamente los datos');
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +49,6 @@ export const Register = () => {
     };
   }
 
-  
   return (
     <div className="w-full h-[442px] flex justify-center items-center relative">
       <h1 className="absolute top-[12%] font-bold text-4xl md:hidden">
@@ -51,7 +56,10 @@ export const Register = () => {
       </h1>
       <div className="w-full h-full flex justify-center items-center">
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmitValidator((data) => {
+            console.log('SE HAN VALIDADO LOS DATOS', data);
+            handleSubmit();
+          })}
           className="flex flex-col items-center w-full md:w-[75%] mx-auto"
         >
           <div className="flex items-center mb-6">
@@ -63,8 +71,8 @@ export const Register = () => {
               />
               {/* username */}
               <input
+                {...registerValidator('username', { required: true })}
                 type="text"
-                name="username"
                 placeholder="Username"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
                 value={userData.username}
@@ -79,10 +87,10 @@ export const Register = () => {
                 alt=""
                 className="absolute left-0 top-1/2 transform -translate-y-1/2"
               />
-               {/* name*/}
+              {/* name*/}
               <input
+                {...registerValidator('nombre', { required: true })}
                 type="text"
-                name="nombre"
                 placeholder="Name"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
                 value={userData.nombre}
@@ -97,10 +105,10 @@ export const Register = () => {
                 alt=""
                 className="absolute left-0 top-1/2 transform -translate-y-1/2"
               />
-               {/* lastname */}
+              {/* lastname */}
               <input
+                {...registerValidator('apellido', { required: true })}
                 type="text"
-                name="apellido"
                 placeholder="Lastname"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
                 value={userData.apellido}
@@ -115,10 +123,10 @@ export const Register = () => {
                 alt=""
                 className="absolute left-0 top-1/2 transform -translate-y-1/2"
               />
-               {/* email */}
+              {/* email */}
               <input
+                {...registerValidator('email', { required: true })}
                 type="email"
-                name="email"
                 placeholder="Email"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
                 value={userData.email}
@@ -133,10 +141,10 @@ export const Register = () => {
                 alt=""
                 className="absolute left-0 top-1/2 transform -translate-y-1/2"
               />
-               {/* cellphone */}
+              {/* cellphone */}
               <input
+                {...registerValidator('celular', { required: true })}
                 type="text"
-                name="celular"
                 placeholder="Number of cellphone"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
                 value={userData.celular}
@@ -151,10 +159,10 @@ export const Register = () => {
                 alt=""
                 className="absolute left-0 top-1/2 transform -translate-y-1/2"
               />
-               {/* Direccion */}
+              {/* Direccion */}
               <input
+                {...registerValidator('direccion', { required: true })}
                 type="text"
-                name="direccion"
                 placeholder="Direccion"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
                 value={userData.direccion}
@@ -169,10 +177,10 @@ export const Register = () => {
                 alt=""
                 className="absolute left-0 top-1/2 transform -translate-y-1/2"
               />
-               {/* password */}
+              {/* password */}
               <input
+                {...registerValidator('password', { required: true })}
                 type="password"
-                name="password"
                 placeholder="Password"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
                 value={userData.password}
@@ -189,8 +197,11 @@ export const Register = () => {
               />
               {/* confirm password */}
               <input
+                {...registerValidator('confirmPassword', {
+                  required: true,
+                  validate: (value) => value === getValues('password'),
+                })}
                 type="password"
-                name="confirmPassword"
                 placeholder="Confirm Password"
                 className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
                 value={userData.confirmPassword}
