@@ -54,9 +54,7 @@ export const MyAuthProvider: React.FC<{ children: ReactNode }> = ({
     const response = await axios.post(`${baseUrl}auth/login`, data);
     if (response.status) {
       localStorage.setItem('dataLogin', JSON.stringify(response.data));
-      setDataLogin((prevState: any) => {
-        return { ...prevState, userLogin: true };
-      });
+      setDataLogin({ ...dataLogin, userLogin: true });
       console.log('response:', response.data);
     }
   };
