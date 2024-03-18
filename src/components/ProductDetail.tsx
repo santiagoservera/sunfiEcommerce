@@ -44,10 +44,11 @@ const ProductDetail = () => {
 
   const handleAddToCart = () => {
     if (dataLogin?.userLogin) {
-      addProductToCart(payload.carritoId, {
+      addProductToCart({
         articuloId: product?.id,
         precio: product?.precio,
         cantidad: cantidad,
+        carritoId: payload.carritoId,
       }).then((response) => {
         if (response) {
           setCartResponse(true);

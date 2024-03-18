@@ -2,8 +2,10 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/Auth';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 
 export const Login = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -14,8 +16,9 @@ export const Login = () => {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const handleLoginSubmit = async (data: any) => {
-        try {
+    try {
       await login({ username: data.username, password: data.password });
+      router.back();
     } catch (error) {
       console.log(error);
     }
@@ -37,12 +40,13 @@ export const Login = () => {
             />
             {/* username */}
             <input
-            {...register('username', { required: true })}
+              {...register('username', { required: true })}
               type="text"
               placeholder="Username"
               className=" outline-none w-[250px] sm:w-[400px] md:w-[300px]"
-                          />
-             {errors.username && (
+              autoComplete="off"
+            />
+            {errors.username && (
               <span className="absolute text-red-500 text-xs bottom-0 right-0">
                 Username is required
               </span>
@@ -56,13 +60,17 @@ export const Login = () => {
             />
             {/* password */}
             <input
-            {...register('password', { required: true })}
+              {...register('password', { required: true })}
               type="password"
               placeholder="Password"
               className=" outline-none w-[250px] sm:w-[400px] md:w-[300px]"
-                          />
-             {errors.password && <span className="absolute text-red-500 text-xs bottom-0 right-0"
-            >Password is required</span>}
+              autoComplete="off"
+            />
+            {errors.password && (
+              <span className="absolute text-red-500 text-xs bottom-0 right-0">
+                Password is required
+              </span>
+            )}
           </div>
           <div className="flex justify-between items-center w-full">
             <a className="mr-4 font-bold text-xs cursor-pointer">
