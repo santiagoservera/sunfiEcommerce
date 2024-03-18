@@ -15,6 +15,7 @@ type typeDetail = {
   precio: number;
   imagen1: string;
   categoria: typeCategoria;
+  imagenNew: string;
 };
 
 type typeCategoria = {
@@ -65,12 +66,28 @@ const ProductDetail = () => {
       setIsLoading(true);
       try {
         const productData = await fetchProductById(id);
-        setProduct(productData);
+
+        if (productData) {
+          // Procesamiento de imágenes (igual al código anterior)
+          const arrayBuffer = new Uint8Array(productData?.imagen1?.data).buffer;
+          const uint8Array = new Uint8Array(arrayBuffer);
+          let binaryString = '';
+          uint8Array.forEach((byte) => {
+            binaryString += String.fromCharCode(byte);
+          });
+          const base64Data = btoa(binaryString);
+          const dataUrl = `data:image/png;base64,${base64Data}`;
+          console.log(dataUrl);
+
+          const data = { ...productData, imagenNew: dataUrl };
+          setProduct(data);
+        }
       } catch (error) {
         console.error('Error fetching product:', error);
       }
       setIsLoading(false);
     };
+    console.log(fetchProduct);
 
     fetchProduct();
   }, [id]);
@@ -82,7 +99,16 @@ const ProductDetail = () => {
         <div className="container-width-ecommerce flex flex-row justify-between items-center">
           {isLoading && <Loader />}
           {!isLoading && (
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center gap-5">
+              <div className="">
+                <div className="w-[500px] h-[500px]">
+                  <img
+                    src={product?.imagenNew}
+                    alt="article img"
+                    className="rounded-lg "
+                  />
+                </div>
+              </div>
               <div className="w-[50%] flex flex-col gap-9">
                 <h2 className="text-4xl font-bold">{product?.nombre}</h2>
                 <p className="-mt-8">

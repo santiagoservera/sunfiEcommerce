@@ -4,34 +4,65 @@
 //Service import
 import fetchArticles from '@/services/Articles';
 //Native imports
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 //Components imports
 import { Loader } from './Loader';
-
+import imgAlt from '../../public/altImgProduct.jpeg';
+import { Router } from 'next/router';
 export const SearchProduct = () => {
   const searchParams = useParams();
   const [dataSearch, setDataSearch] = useState([]);
-  const [isLoading, setIsLoading] = useState<boolean>();
-
-  //search by query
+  const [isLoading, setIsLoading] = useState<boolean>(false); // Inicializar isLoading en false
+  const router = useRouter();
+  // Búsqueda por consulta
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        await fetchArticles(searchParams.query).then((results: any) => {
-          if (results) {
-            setDataSearch(results);
-          }
-        });
+        const results = await fetchArticles(searchParams.query);
+
+        if (results) {
+          const dataNew = results.map((img: any) => {
+            // Procesamiento de imágenes (igual al código anterior)
+            const arrayBuffer = new Uint8Array(img?.imagen1?.data).buffer;
+            const uint8Array = new Uint8Array(arrayBuffer);
+            let binaryString = '';
+            uint8Array.forEach((byte) => {
+              binaryString += String.fromCharCode(byte);
+            });
+            const base64Data = btoa(binaryString);
+            const dataUrl = `data:image/png;base64,${base64Data}`;
+
+            return {
+              id: img.id,
+              imagenNew: dataUrl,
+            };
+          });
+          const data = results.map((item: any) => {
+            return {
+              ...item,
+              imagen: dataNew.map((itemImg: any) => {
+                return itemImg;
+              }),
+            };
+          });
+          setDataSearch(data);
+        }
       } catch (error) {
-        console.log(error);
+        console.error(error); // Manejar el error de forma adecuada
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
+
     fetchData();
   }, [searchParams.query]);
   console.log(dataSearch);
+
+  const handleClickById = (productId: number) => {
+    router.push(`/product-detail/${productId}`);
+  };
 
   return (
     <>
@@ -91,12 +122,20 @@ export const SearchProduct = () => {
               <div className="bg-white lg:h-[300px] lg:w-full rounded-lg shadow-[0px_4px_4px_0px_#00000040] border border-[#0000004D] lg:mt-5">
                 <div className="lg:w-full lg:flex lg:flex-row lg:py-5">
                   <div className="lg:w-[25%] lg:px-5 lg:h-full">
-                    <img
-                      src="{{ articleImg.imagenNew }}"
-                      alt="img article"
-                      className="bg-violet-400 w-full h-full"
-                    />
-
+                    <div className="">
+                      {item.imagen.map(
+                        (itemCard: any) =>
+                          itemCard.id === item.id && (
+                            <div className="">
+                              <img
+                                src={itemCard.imagenNew}
+                                alt="article img"
+                                className=" rounded-full"
+                              />
+                            </div>
+                          )
+                      )}
+                    </div>
                     {/* } } */}
                   </div>
 
@@ -111,7 +150,10 @@ export const SearchProduct = () => {
                       </p>
                     </div>
                     <div className="w-full flex justify-end pr-10">
-                      <button className="w-[150px] text-center border-black border p-3 rounded-3xl font-bold">
+                      <button
+                        onClick={() => handleClickById(item.id)}
+                        className="w-[150px] text-center border-black border p-3 rounded-3xl font-bold"
+                      >
                         VER
                       </button>
                     </div>
