@@ -18,12 +18,39 @@ import Image from 'next/image';
 export const Products = () => {
   const [articles, setArticles] = useState([]);
   const router = useRouter();
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await fetchArticles();
-        setArticles(data);
+        const dataImg = data.map((img: any) => {
+          const arrayBuffer = new Uint8Array(img?.imagen1?.data).buffer;
+
+          // Convertir el ArrayBuffer a Uint8Array
+          const uint8Array = new Uint8Array(arrayBuffer);
+
+          // Convertir los datos binarios en una cadena base64
+          let binaryString = '';
+          uint8Array.forEach((byte) => {
+            binaryString += String.fromCharCode(byte);
+          });
+          const base64Data = btoa(binaryString);
+
+          const dataUrl = `data:image/png;base64,${base64Data}`;
+
+          return {
+            id: img.id,
+            imagenNew: dataUrl,
+          };
+        });
+        const dataNew = data.map((item: any) => {
+          return {
+            ...item,
+            imagen: dataImg.map((itemImg: any) => {
+              return itemImg;
+            }),
+          };
+        });
+        setArticles(dataNew);
       } catch (error) {
         // Manejar el error si es necesario
       }
@@ -77,22 +104,21 @@ export const Products = () => {
                   onClick={() => handleClickById(item.id)}
                   className="cursor-pointer"
                 >
-                  {/* <div class="">
-            @for (articleImg of article.imagen; track $index) { @if(article.id === articleImg.id){
-              <div class="">
-                <img src="{{ articleImg.imagenNew }}" alt="article img" class=" rounded-full"  />
-              </div>
-            } }
-          </div> */}
-                  <div>
-                    <Image
-                      width={300}
-                      height={460}
-                      src={img1}
-                      alt=""
-                      className=""
-                    />
+                  <div className="">
+                    {item.imagen.map(
+                      (itemCard: any) =>
+                        itemCard.id === item.id && (
+                          <div className="">
+                            <img
+                              src={itemCard.imagenNew}
+                              alt="article img"
+                              className=" rounded-full"
+                            />
+                          </div>
+                        )
+                    )}
                   </div>
+
                   <div className="text-center">
                     <p className="font-semibold text-sm lg:w-[100%] text-black">
                       {item.nombre}
@@ -135,21 +161,19 @@ export const Products = () => {
                   onClick={() => handleClickById(item.id)}
                   className="cursor-pointer"
                 >
-                  {/* <div class="">
-            @for (articleImg of article.imagen; track $index) { @if(article.id === articleImg.id){
-              <div class="">
-                <img src="{{ articleImg.imagenNew }}" alt="article img" class=" rounded-full"  />
-              </div>
-            } }
-          </div> */}
-                  <div>
-                    <Image
-                      width={300}
-                      height={460}
-                      src={img1}
-                      alt=""
-                      className=""
-                    />
+                  <div className="">
+                    {item.imagen.map(
+                      (itemCard: any) =>
+                        itemCard.id === item.id && (
+                          <div className="">
+                            <img
+                              src={itemCard.imagenNew}
+                              alt="article img"
+                              className=" rounded-full"
+                            />
+                          </div>
+                        )
+                    )}
                   </div>
                   <div className="text-center">
                     <p className="font-semibold text-sm lg:w-[100%] text-black">
@@ -193,21 +217,19 @@ export const Products = () => {
                   onClick={() => handleClickById(item.id)}
                   className="cursor-pointer"
                 >
-                  {/* <div class="">
-            @for (articleImg of article.imagen; track $index) { @if(article.id === articleImg.id){
-              <div class="">
-                <img src="{{ articleImg.imagenNew }}" alt="article img" class=" rounded-full"  />
-              </div>
-            } }
-          </div> */}
-                  <div>
-                    <Image
-                      width={300}
-                      height={460}
-                      src={img1}
-                      alt=""
-                      className=""
-                    />
+                  <div className="">
+                    {item.imagen.map(
+                      (itemCard: any) =>
+                        itemCard.id === item.id && (
+                          <div className="">
+                            <img
+                              src={itemCard.imagenNew}
+                              alt="article img"
+                              className=" rounded-full"
+                            />
+                          </div>
+                        )
+                    )}
                   </div>
                   <div className="text-center">
                     <p className="font-semibold text-sm lg:w-[100%] text-black">
