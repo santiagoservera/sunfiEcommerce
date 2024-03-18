@@ -57,32 +57,48 @@ export const FormNewProduct = ({
 
   return (
     <div>
-      <div className="lg:w-full lg:flex lg:flex-row h-full bgnewProduct">
-        <div className="lg:w-[25%] lg:h-full lg:flex lg:items-center">
-          <aside className="text-white bg-[#37133E] lg:min-h-screen lg:h-full lg:w-full lg:my-auto">
+      <div className="w-full flex flex-row h-full bgnewProduct ">
+        <div className="lg:w-[25%] h-full flex items-center containerWidth">
+          <aside className="text-white bg-[#37133E] min-h-screen lg:h-full lg:w-full lg:my-auto">
             <div className="lg:flex lg:justify-center lg:py-5 border-b border-white border-opacity-30">
               <button className="border-transparent bg-[#290E2E] lg:p-5 lg:px-12 text-center text-[#D1C0D4] rounded-xl">
-                CREAR UN NUEVO PRODUCTO
+                <div className="hidden sm:block">
+                  <p>CREAR UN NUEVO PRODUCTO</p>
+                </div>
+                <div className="md:hidden flex justify-center items-center w-[50px] h-[50px]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    height="25"
+                    viewBox="0 0 24 24"
+                  >
+                    <path fill="#ffffff" d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" />
+                  </svg>
+                </div>
               </button>
             </div>
-            <div className="lg:flex lg:flex-row lg:gap-3 lg:p-5 lg:ml-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="#ffffff"
-                  d="M3 18v-2h18v2zm0-5v-2h18v2zm0-5V6h18v2z"
-                />
-              </svg>
-              TUS PUBLICACIONES
+            <div className="lg:flex lg:flex-row lg:gap-3 lg:p-5 lg:ml-2  lg:items-center">
+              <div className=" w-[50px] h-[50px] flex justify-center items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="#ffffff"
+                    d="M3 18v-2h18v2zm0-5v-2h18v2zm0-5V6h18v2z"
+                  />
+                </svg>
+              </div>
+              <div className="hidden sm:block">
+                <p>TUS PUBLICACIONES</p>
+              </div>
             </div>
           </aside>
         </div>
-        <div className="w-full h-full p-7">
-          <section className="w-full h-full">
+        <div className="w-full h-full lg:p-7">
+          <section className="containerWidth">
             <div className="lg:max-w-[1000px] lg:mx-auto lg:flex lg:flex-col lg:gap-10">
               <div className="text-black flex flex-row justify-between  mb-5 lg:mb-0">
                 <h1 className="font-bold text-3xl">Nuevo Producto</h1>
@@ -128,8 +144,8 @@ export const FormNewProduct = ({
                   <div className="py-3">
                     <p className="lg:text-xl font-bold">Fotos</p>
                   </div>
-                  <div>
-                    <div className="lg:flex lg:flex-row lg:justify-between">
+                  <div className="py-10 lg:py-0">
+                    <div className="lg:flex lg:flex-row lg:justify-between flex gap-5 flex-col">
                       <div className="lg:flex lg:flex-col border border-dashed border-black lg:w-[250px] lg:h-[250px] lg:justify-center lg:items-center gap-3 rounded-lg shadow-[0px_4px_4px_0px_#00000040]">
                         <p className="text-center lg:px-2 border border-black rounded-full text-3xl items-center">
                           +
@@ -189,13 +205,13 @@ export const FormNewProduct = ({
                   </div>
                 </div>
               </div>
-              <div className="lg:w-full lg:h-[50px]">
-                <div className="w-full lg:flex lg:justify-end lg:gap-3">
-                  <button className="border bg-white lg:px-16 lg:py-3 rounded-full">
+              <div className="lg:w-full lg:h-[50px] ">
+                <div className="w-full lg:flex lg:justify-end lg:gap-3 flex justify-between">
+                  <button className="border bg-white lg:px-16 lg:py-3 px-10 py-3 rounded-full">
                     CANCELAR
                   </button>
                   <button
-                    className="border bg-[#2C0F32] lg:px-20 lg:py-3 text-white rounded-full "
+                    className="border bg-[#2C0F32] lg:px-20 lg:py-3  px-10 py-3 text-white rounded-full "
                     onClick={handleSubmit}
                   >
                     GUARDAR
