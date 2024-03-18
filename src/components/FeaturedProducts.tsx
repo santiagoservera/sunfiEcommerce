@@ -9,8 +9,8 @@ export const FeaturedProducts = () => {
         </h1>
       </div>
 
-      <div className="containerWidth  w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-full justify-between items-center relative">
-      <div className="group card h-[360px] rounded-xl shadow-2xl overflow-hidden relative text-center">
+      <div className="containerWidth  w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-full justify-between items-center relative mb-4">
+        <div className="group card h-[360px] rounded-xl shadow-2xl overflow-hidden relative text-center">
           <img src="/ap2025.png" alt="Imagen 3" className="mx-auto" />
           <div className="p-4">
             <h1 className="text-white text-xl font-bold mb-2">

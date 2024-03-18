@@ -1,7 +1,8 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '@/context/Auth';
-import { fetchOneCart } from '@/services/Carrito';
+import { fetchOneCart, createCart } from '@/services/Carrito';
+import { fetchPagos } from '@/services/Pagos';
 import { Carrito, Item } from '@/interfaces/Carrito';
 import Image from 'next/image';
 
@@ -10,14 +11,42 @@ export const ModalCarrito = () => {
   const [cart, setCart] = useState<Carrito>();
   const [verMas, setVerMas] = useState(false);
 
+  const handlePago = async () => {
+    try {
+      const pagoData = await fetchPagos(1, dataLogin.payload.carritoId);
+      if (pagoData) {
+        let link = document.createElement('a');
+        link.href = pagoData.urlPago;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        const createCarrito = await createCart({
+          usuarioId: dataLogin.payload.userId,
+        }).then((res) => {
+          localStorage.setItem(
+            'dataLogin',
+            JSON.stringify({
+              ...dataLogin,
+              payload: { ...dataLogin.payload, carritoId: res.data.id },
+            })
+          );
+        });
+        fetchOneCart(dataLogin.payload.userId).then((res) => {
+          setCart(res);
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching Pago:', error);
+    }
+  };
+
   useEffect(() => {
     const fetchCarrito = async () => {
       try {
         const carritoData = await fetchOneCart(dataLogin.payload.userId);
-        console.log(carritoData);
         setCart(carritoData);
       } catch (error) {
-        console.error('Error fetching product:', error);
+        console.error('Error fetching Cart:', error);
       }
     };
     fetchCarrito();
@@ -36,8 +65,8 @@ export const ModalCarrito = () => {
       >
         x
       </p>
-      {!cart && (
-        <div>
+      {cart?.items && cart?.items?.length === 0 && (
+        <div className="flex w-full flex-col justify-center items-center">
           <h1>Carrito</h1>
           <p>No hay productos en el carrito</p>
         </div>
@@ -95,7 +124,10 @@ export const ModalCarrito = () => {
             })}
           {verMas && (
             <>
-              <button className="p-[7px] bg-[#009ee3] mt-4 rounded-xl text-white flex justify-center text-center items-center">
+              <button
+                onClick={handlePago}
+                className="p-[7px] bg-[#009ee3] mt-4 rounded-xl text-white flex justify-center text-center items-center"
+              >
                 ¡Pagar con MERCADO PAGO!
                 <Image
                   width={40}
@@ -114,7 +146,7 @@ export const ModalCarrito = () => {
               </button>
             </>
           )}
-          {!verMas && (
+          {cart.items.length > 0 && !verMas && (
             <button
               onClick={() => setVerMas(true)}
               className="mt-4 p-3 bg-black text-white rounded-xl"
