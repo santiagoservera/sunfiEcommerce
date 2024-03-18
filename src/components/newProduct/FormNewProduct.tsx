@@ -84,14 +84,14 @@ export const FormNewProduct = ({
         <div className="w-full h-full p-7">
           <section className="w-full h-full">
             <div className="lg:max-w-[1000px] lg:mx-auto lg:flex lg:flex-col lg:gap-10">
-              <div className="text-black lg:justify-between lg:flex lg:flex-row">
+              <div className="text-black flex flex-row justify-between  mb-5 lg:mb-0">
                 <h1 className="font-bold text-3xl">Nuevo Producto</h1>
                 <div>
                   <button onClick={() => setSection(true)}>X</button>
                 </div>
               </div>
 
-              <div className="bg-white text-black w-full lg:h-[450px] rounded-lg shadow-[0px_4px_4px_0px_#00000040]">
+              <div className="bg-white text-black w-full lg:h-[450px] rounded-lg shadow-[0px_4px_4px_0px_#00000040] mb-5 lg:mb-0">
                 <div className="w-[95%] mx-auto">
                   <div className="py-3">
                     <p className="lg:text-xl font-bold">
@@ -123,7 +123,7 @@ export const FormNewProduct = ({
                 </div>
               </div>
 
-              <div className="bg-white text-black w-full lg:h-[380px] rounded-lg shadow-[0px_4px_4px_0px_#00000040]">
+              <div className="bg-white text-black w-full lg:h-[380px] rounded-lg shadow-[0px_4px_4px_0px_#00000040]  mb-5 lg:mb-0">
                 <div className="w-[95%] mx-auto">
                   <div className="py-3">
                     <p className="lg:text-xl font-bold">Fotos</p>
@@ -171,7 +171,7 @@ export const FormNewProduct = ({
                 </div>
               </div>
 
-              <div className="lg:w-full h-[170px] bg-white text-black rounded-lg shadow-[0px_4px_4px_0px_#00000040]">
+              <div className="lg:w-full h-[170px] bg-white text-black rounded-lg shadow-[0px_4px_4px_0px_#00000040]  mb-5 lg:mb-0">
                 <div className="w-[95%] mx-auto">
                   <div className="py-3">
                     <p className="lg:text-xl font-bold">Precio</p>
