@@ -10,7 +10,7 @@ export const Galery = () => {
         Software en prouctos digitales
       </p>
       <div className="bg-transparent">
-        <div className="h-[200px] lg:h-[500px] lg:col-span-2 w-full bg-transparent rounded-xl lg:rounded-none">
+        <div className=" lg:col-span-2 w-full bg-transparent rounded-xl lg:rounded-none">
           <img src="/onlineShopping.png " alt="" className="mx-auto my-auto" />
         </div>
       </div>

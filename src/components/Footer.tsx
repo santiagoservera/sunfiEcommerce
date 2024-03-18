@@ -2,13 +2,13 @@ import React from 'react';
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#342b53] containerWidth rounded-bl-none rounded-br-none mx-auto rounded-[80px] overflow-hidden h-[300px] ">
-      <div className=" h-full">
-        <div className="w-full h-full flex flex-row  items-center justify-between text-white">
+    <footer className="bg-[#342b53] containerWidth rounded-bl-none rounded-br-none mx-auto rounded-[80px] overflow-hidden h-[600px] lg:h-[300px]">
+      <div className="h-full">
+        <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center text-white">
           <div className="ml-5 flex gap-5 justify-center relative">
             <div className="flex flex-col justify-center items-center mt-4">
               <div className="w-[150px] mb-2 mt-[-20px]">
-                <img src="/Group.png" alt="SUINFI" className="" />
+                <img src="/suinfiHero.png" alt="SUINFI" className="" />
               </div>
               <div className="bl-2 w-[200px] text-xl text-center">
                 <h2>e c o m m e r c e</h2>
@@ -53,7 +53,10 @@ export const Footer = () => {
               <b className="">Visit us</b>
             </div>
             <div className="w-[250px] mb-0 flex items-center">
-              <p className="ml-6">Jumeirah Lake Towers, Arch Tower G - Dubái - United Arab Emirates</p>
+              <p className="ml-6">
+                Jumeirah Lake Towers, Arch Tower G - Dubái - United Arab
+                Emirates
+              </p>
             </div>
           </div>
         </div>
