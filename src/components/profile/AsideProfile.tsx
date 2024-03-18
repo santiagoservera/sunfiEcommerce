@@ -3,10 +3,12 @@ import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
+import { useAuth } from '@/context/Auth';
 //Images
 import customerPic from '../../../public/Customer.png';
 import securityPic from '../../../public/Security Shield.png';
 import magneticCardPic from '../../../public/Magnetic Card.png';
+import logoutPic from '../../../public/logout.png';
 //Components
 import { Account } from '@/components/profile/Account';
 import { Security } from '@/components/profile/Security';
@@ -16,6 +18,7 @@ export const AsideProfile = () => {
   const router = useRouter();
   const currentRoute = usePathname();
   const isActive = (path: any) => currentRoute === path;
+  const { logout } = useAuth();
   //function to edit hover:buttons on paths
   const buttonClasses = (path: any) => `
   flex items-center mx-0 my-0 rounded-md p-4 transition duration-300
@@ -23,6 +26,11 @@ export const AsideProfile = () => {
     isActive(path) ? 'bg-[#7637839C] ' : 'bg-[#37133E]'
   } hover:bg-[#7637839C] cursor-pointer gap-2
 `;
+
+  const handleLogout = () => {
+    logout();
+    router.push('/auth#login');
+  };
 
   //function to render the components depending on paths
   const renderProfileContent = () => {
@@ -78,12 +86,21 @@ export const AsideProfile = () => {
             />
             TARJETAS
           </button>
+          <button
+            type="button"
+            onClick={handleLogout}
+            className={buttonClasses('/profile/cards')}
+          >
+            <Image
+              src={logoutPic}
+              alt="cerrar-sesion"
+              className="w-7 h-7 mr-2 ml-2 invert"
+            />
+            CERRAR SESIÓN
+          </button>
         </aside>
 
-        <div className="w-9/12 m-4 ">
-          {renderProfileContent()}
-          {/* <router-outlet></router-outlet> */}
-        </div>
+        <div className="w-9/12 m-4 ">{renderProfileContent()}</div>
       </div>
     </>
   );

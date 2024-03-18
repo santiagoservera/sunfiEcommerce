@@ -13,8 +13,6 @@ export const Login = () => {
   } = useForm();
 
   const { login } = useAuth();
-  const [username, setUserName] = useState('');
-  const [password, setPassword] = useState('');
   const handleLoginSubmit = async (data: any) => {
     try {
       await login({ username: data.username, password: data.password });

@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '@/context/Auth';
 import Image from 'next/image';
 import { fetchOneProfile } from '@/services/Perfil';
+import { useRouter } from 'next/navigation';
 
 export const Account = () => {
   const [profile, setProfile] = useState({} as any);
   const { dataLogin } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -21,7 +23,6 @@ export const Account = () => {
     fetchProfile();
   }, []);
 
-  console.log(profile);
   return (
     <>
       <div className="pl-4 w-11/12 ml-10 mr-4">
