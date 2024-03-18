@@ -30,6 +30,7 @@ interface MyContextType {
   dataLogin: any;
   showModal: boolean;
   setShowModal: (value: boolean) => void;
+  logout: () => void;
 }
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const storedData = localStorage.getItem('dataLogin');
@@ -46,8 +47,17 @@ export const MyAuthProvider: React.FC<{ children: ReactNode }> = ({
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('dataLogin', JSON.stringify(dataLogin));
+    if (dataLogin === false) {
+      console.error('No hay datos de login');
+    } else {
+      localStorage.setItem('dataLogin', JSON.stringify(dataLogin));
+    }
   }, [dataLogin]);
+
+  const logout = () => {
+    localStorage.removeItem('dataLogin');
+    setDataLogin({ userLogin: false });
+  };
 
   const login = async (data: any) => {
     const response = await axios.post(`${baseUrl}auth/login`, data);
@@ -77,6 +87,7 @@ export const MyAuthProvider: React.FC<{ children: ReactNode }> = ({
         dataLogin,
         showModal,
         setShowModal,
+        logout,
       }}
     >
       {children}

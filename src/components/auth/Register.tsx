@@ -2,9 +2,11 @@
 import { useAuth } from '@/context/Auth';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 
 export const Register = () => {
   const { register } = useAuth();
+  const router = useRouter();
   //Use form para validar los datos
   const {
     register: registerValidator,
@@ -36,6 +38,7 @@ export const Register = () => {
     try {
       await register(userData);
       console.log('Se ha enviado correctamente los datos');
+      router.push('/auth#login');
     } catch (error) {
       console.log('AXIOS ERROR', error);
     }
@@ -189,22 +192,18 @@ export const Register = () => {
                     alt=""
                     className="absolute left-0 top-1/2 transform -translate-y-1/2"
                   />
-                  <select className="text-gray-400 border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none">
+                  <select
+                    onChange={handleChange}
+                    name="tipCedula"
+                    value={userData.tipCedula}
+                    className="text-gray-400 border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
+                  >
                     <option value="" disabled selected>
                       Tipo de cedula
                     </option>
                     <option value="dni">dni</option>
                     <option value="add">add</option>
                   </select>
-                  {/* <input
-                    {...registerValidator('tipCedula', { required: true })}
-                    type="text"
-                    placeholder="Tipo de cedula"
-                    className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
-                    value={userData.tipCedula}
-                    onChange={handleChange}
-                    aria-invalid={errors.tipCedula ? 'true' : 'false'}
-                  /> */}
                   {errors.tipCedula && errors.tipCedula.type === 'required' && (
                     <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
                       Type of cedula is required

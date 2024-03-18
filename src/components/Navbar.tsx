@@ -17,7 +17,11 @@ export const Navbar = () => {
   const router = useRouter();
 
   const handleShowModal = () => {
-    setShowModal(!showModal);
+    if (dataLogin.userLogin) {
+      setShowModal(!showModal);
+    } else {
+      router.push('/auth#login');
+    }
   };
 
   const handleSubmit = (e: any) => {
