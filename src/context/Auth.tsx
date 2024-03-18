@@ -8,7 +8,6 @@ import React, {
   ReactNode,
   useEffect,
 } from 'react';
-import { set } from 'react-hook-form';
 
 interface MyContextType {
   value: string;
@@ -54,8 +53,7 @@ export const MyAuthProvider: React.FC<{ children: ReactNode }> = ({
     const response = await axios.post(`${baseUrl}auth/login`, data);
     if (response.status) {
       localStorage.setItem('dataLogin', JSON.stringify(response.data));
-      setDataLogin({ ...dataLogin, userLogin: true });
-      console.log('response:', response.data);
+      setDataLogin({ ...response.data, userLogin: true });
     }
   };
 

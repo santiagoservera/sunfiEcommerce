@@ -150,14 +150,14 @@ export const Navbar = () => {
               />
             </Link>
 
-            <a onClick={() => handleShowModal()}>
+            <a onClick={() => handleShowModal()} className="carrito relative">
               <img
                 src="/ShoppingCart.png"
                 alt=""
                 className="hover:cursor-pointer min-w-10"
               />
             </a>
-            <div className="absolute right-[10%] top-[70px] z-[9999]">
+            <div className="absolute right-[5%] top-[70px] z-[9999]">
               {showModal && <ModalCarrito />}
             </div>
           </div>

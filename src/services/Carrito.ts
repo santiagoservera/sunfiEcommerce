@@ -92,8 +92,8 @@ const deleteCart = async (id: string) => {
 export { createCart, updateCart, deleteCart };
 
 //Add a product to a cart
-const addProductToCart = async (carritoId: number, data: any) => {
-  const url = `carrito/addItem/${carritoId}`;
+const addProductToCart = async (data: any) => {
+  const url = `carrito/addItem`;
   try {
     const response = await axios.post(`${baseUrl}${url}`, data);
 
@@ -110,7 +110,7 @@ const addProductToCart = async (carritoId: number, data: any) => {
 
 //Remove a product from a cart
 const removeProductFromCart = async (carritoId: string, articuloId: string) => {
-  const url = `carrito/subItem/${carritoId}/${articuloId}`;
+  const url = `subItem/${carritoId}/${articuloId}`;
   try {
     const response = await axios.put(`${baseUrl}${url}`);
 
