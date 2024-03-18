@@ -64,8 +64,8 @@ export const Carousel = () => {
           </div>
         </SwiperSlide>
       </Swiper>
-      <div className="flex w-full h-[200px] gap-10 justify-between containerWidth">
-        <div className="flex gap-4">
+      <div className="containerWidth w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-full justify-between items-center relative gap-12">
+        <div className="flex gap-4 justify-start">
           <div className="flex items-center">
             <img className="w-[50px]" src="/Audit.png" alt="audit-icon" />
           </div>
@@ -74,7 +74,7 @@ export const Carousel = () => {
             <p className="text-white text-lg">on all our products</p>
           </div>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 justify-center">
           <div className="flex items-center">
             <img
               className="w-[50px]"
@@ -89,7 +89,7 @@ export const Carousel = () => {
             <p className="text-white text-lg">on our social medias</p>
           </div>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 justify-start lg:justify-end">
           <div className="flex items-center">
             <img className="w-[50px]" src="/Money Bag.png" alt="audit-icon" />
           </div>
