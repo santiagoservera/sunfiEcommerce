@@ -56,10 +56,10 @@ export const FormNewProduct = ({
   };
 
   return (
-    <div>
+    <div className="h-full">
       <div className="w-full flex flex-row h-full bgnewProduct ">
-        <div className="lg:w-[25%] h-full flex items-center containerWidth">
-          <aside className="text-white bg-[#37133E] min-h-screen lg:h-full lg:w-full lg:my-auto">
+        <div className="lg:w-[25%] h-full flex items-center bg-[#37133E]">
+          <aside className="text-white lg:w-full lg:my-auto min-h-[150vh]">
             <div className="lg:flex lg:justify-center lg:py-5 border-b border-white border-opacity-30">
               <button className="border-transparent bg-[#290E2E] lg:p-5 lg:px-12 text-center text-[#D1C0D4] rounded-xl">
                 <div className="hidden sm:block">
@@ -206,12 +206,12 @@ export const FormNewProduct = ({
                 </div>
               </div>
               <div className="lg:w-full lg:h-[50px] ">
-                <div className="w-full lg:flex lg:justify-end lg:gap-3 flex justify-between">
-                  <button className="border bg-white lg:px-16 lg:py-3 px-10 py-3 rounded-full">
+                <div className="w-full lg:flex lg:flex-row lg:justify-end gap-3 flex flex-col">
+                  <button className="border bg-white lg:px-16 lg:py-3 px-7 py-3 rounded-full">
                     CANCELAR
                   </button>
                   <button
-                    className="border bg-[#2C0F32] lg:px-20 lg:py-3  px-10 py-3 text-white rounded-full "
+                    className="border bg-[#2C0F32] lg:px-20 lg:py-3  px-7 py-3 text-white rounded-full "
                     onClick={handleSubmit}
                   >
                     GUARDAR
