@@ -24,7 +24,7 @@ export const NewProduct = () => {
   return (
     <>
       {section ? (
-        <div className="lg:w-full lg:flex lg:flex-row h-full bgnewProduct">
+        <div className="lg:w-full lg:flex lg:flex-row lg:h-full min-h-screen bgnewProduct">
           <div className="lg:w-[25%] lg:h-full lg:flex lg:items-center ">
             <aside className="text-white bg-[#37133E] lg:min-h-screen  lg:h-full lg:w-full lg:my-auto">
               <div className="lg:flex lg:justify-center lg:py-5 border-b border-white border-opacity-30">
@@ -58,20 +58,18 @@ export const NewProduct = () => {
                   <span className="">X</span>
                 </div>
 
-                <div className="bg-[#FDFCFD] lg:inline-block rounded-lg lg:p-4 lg:mx-10 lg:my-10 lg:text-center  lg:items-center">
+                <div className="bg-[#FDFCFD] lg:inline-block rounded-lg lg:p-4 lg:mx-10 lg:my-10 lg:text-center  lg:items-center max-w-[166px] max-h-[112] mx-auto">
                   <button onClick={() => setSection(false)}>
                     <img
                       src="\imgCardYouproduct.png"
                       alt="card img"
                       className="lg:block mb-4 mr-4 mx-8"
                     />
-                    <div className="lg:inline-block">
-                      <span className="lg:font-bold block lg:max-w-[166px] lg:max-h-[112] mb-1">
-                        PRODUCTOS
-                      </span>
+                    <div className="lg:inline-block w-full h-full">
+                      <span className="lg:font-bold block mb-1">PRODUCTOS</span>
                     </div>
                     <div>
-                      <p className="lg:block lg:max-w-[166px] lg:max-h-[112px]">
+                      <p className="lg:block w-full h-full">
                         Crea una publicación para uno o varios productos.
                       </p>
                     </div>
