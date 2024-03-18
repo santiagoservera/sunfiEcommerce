@@ -6,7 +6,7 @@ import { Carrito, Item } from '@/interfaces/Carrito';
 import Image from 'next/image';
 
 export const ModalCarrito = () => {
-  const { cartResponse, dataLogin } = useAuth();
+  const { cartResponse, dataLogin, showModal, setShowModal } = useAuth();
   const [cart, setCart] = useState<Carrito>();
   const [verMas, setVerMas] = useState(false);
 
@@ -25,9 +25,17 @@ export const ModalCarrito = () => {
   return (
     <div
       className={`w-[500px] ${
-        verMas ? 'h-auto' : 'h-[230px]'
-      } bg-white rounded-xl text-zinc-900 flex p-5 transform ease-in-out transition-all duration-300`}
+        verMas ? 'h-auto' : 'h-[250px]'
+      } bg-white rounded-xl text-zinc-900 flex p-8 relative`}
     >
+      <p
+        onClick={() => {
+          setShowModal(!showModal);
+        }}
+        className="absolute top-0 right-3 cursor-pointer text-2xl font-bold"
+      >
+        x
+      </p>
       {!cart && (
         <div>
           <h1>Carrito</h1>
@@ -38,11 +46,14 @@ export const ModalCarrito = () => {
         <div className="flex flex-col">
           {cart.items.slice(0, 1).map((item: Item) => {
             return (
-              <div key={item.id} className="flex gap-3">
-                <div>
-                  <img
-                    src="acad.png"
-                    className="w-[70px] h-[70px] object-cover"
+              <div key={item.id} className="flex gap-3 mb-3">
+                <div className="flex justify-center items-center">
+                  <Image
+                    width={100}
+                    height={70}
+                    src="/acad.png"
+                    className="object-cover"
+                    alt="imagen-producto"
                   />
                 </div>
                 <div>
@@ -63,15 +74,21 @@ export const ModalCarrito = () => {
           {verMas &&
             cart.items.slice(1).map((item: Item) => {
               return (
-                <div key={item.id} className="flex gap-3">
-                  <div>
-                    <img
-                      src="acad.png"
-                      className="w-[70px] h-[70px] object-cover"
+                <div key={item.id} className="flex gap-3 mb-3">
+                  <div className="flex justify-center items-center">
+                    <Image
+                      width={100}
+                      height={70}
+                      src="/acad.png"
+                      className="object-cover"
+                      alt="imagen-producto"
                     />
                   </div>
                   <div>
                     <p>{item.nombre}</p>
+                    <p>
+                      {item.CarritoArticulo.cantidad}x{item.precio}
+                    </p>
                   </div>
                 </div>
               );
@@ -80,9 +97,19 @@ export const ModalCarrito = () => {
             <>
               <button className="p-[7px] bg-[#009ee3] mt-4 rounded-xl text-white flex justify-center text-center items-center">
                 ¡Pagar con MERCADO PAGO!
-                <Image src="logo-mp.png" alt="logo-mp" className="w-10 h-10" />
+                <Image
+                  width={40}
+                  height={40}
+                  src="/logo-mp.png"
+                  alt="logo-mp"
+                />
               </button>
-              <button className="p-3 mt-4 bg-black text-white rounded-xl">
+              <button
+                onClick={() => {
+                  setShowModal(!showModal);
+                }}
+                className="p-3 mt-4 bg-black text-white rounded-xl"
+              >
                 Cancelar
               </button>
             </>
