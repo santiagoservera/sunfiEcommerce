@@ -9,7 +9,7 @@ export default function Home() {
     <LayoutEcommerce>
       <div className="bg-ecommerce">
         <Carousel />
-        <FeaturedProducts />
+        {/* <FeaturedProducts /> */}
         <Products />
         <Galery />
       </div>

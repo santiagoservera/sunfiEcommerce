@@ -14,12 +14,16 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import Image from 'next/image';
+import { Loader } from './Loader';
 
 export const Products = () => {
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true)
       try {
         const data = await fetchArticles();
         const dataImg = data.map((img: any) => {
@@ -54,6 +58,8 @@ export const Products = () => {
       } catch (error) {
         // Manejar el error si es necesario
       }
+      setIsLoading(false)
+
     };
 
     fetchData();
@@ -65,13 +71,17 @@ export const Products = () => {
 
   return (
     <>
-      <div className="bg-white  bg-opacity-90 w-fit mx-auto rounded-t-3xl py-2 px-7">
+      <div className="bg-white  bg-opacity-90 w-fit mx-auto rounded-t-3xl py-2 px-7 mt-20">
         <h1 className="text-2xl lg:text-lg font-semibold  text-center text-black">
           Lista de Productos
         </h1>
       </div>
 
       <section className="containerWidth px-10 py-10 lg:py-10 bg-white  bg-opacity-90 rounded-2xl ">
+        <div className="w-full flex items-center justify-center">
+          {isLoading && <Loader />}
+
+        </div>
         <Swiper
           slidesPerView={3}
           spaceBetween={320}
