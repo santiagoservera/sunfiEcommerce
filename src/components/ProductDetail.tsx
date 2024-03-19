@@ -119,9 +119,11 @@ const ProductDetail = () => {
                 <h2 className="text-4xl font-bold">${product?.precio}</h2>
                 <div className="flex flex-row">
                   <div className="flex flex-row mr-7 bg-[#f6eef9] gap-3 items-center px-4 rounded-xl font-semibold">
-                    <button onClick={handleIncrement}>+</button>
-                    <p className="w-4">{cantidad}</p>
                     <button onClick={handleDecrement}>-</button>
+
+                    <p className="w-4">{cantidad}</p>
+                    <button onClick={handleIncrement}>+</button>
+
                   </div>
                   <button
                     onClick={handleAddToCart}

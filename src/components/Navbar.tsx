@@ -46,16 +46,11 @@ export const Navbar = () => {
             <a className="block hover:text-[#9468a9] text-nowrap" href="#">
               Categorías
             </a>
-            <a className="block hover:text-[#9468a9] text-nowrap" href="#">
-              SECCIÓN 2
-            </a>
-            <a className="block hover:text-[#9468a9] text-nowrap" href="#">
-              SECCIÓN 3
-            </a>
+
             {dataLogin.userLogin && (
-              <a className="block hover:text-[#9468a9] text-nowrap" href="#">
+              <Link className="block hover:text-[#9468a9] text-nowrap" href="/newProduct">
                 Vender
-              </a>
+              </Link>
             )}
           </div>
           {/* <div className="md:hidden">
