@@ -52,9 +52,11 @@ export const Navbar = () => {
             <a className="block hover:text-[#9468a9] text-nowrap" href="#">
               SECCIÓN 3
             </a>
-            <a className="block hover:text-[#9468a9] text-nowrap" href="#">
-              Vender
-            </a>
+            {dataLogin.userLogin && (
+              <a className="block hover:text-[#9468a9] text-nowrap" href="#">
+                Vender
+              </a>
+            )}
           </div>
           {/* <div className="md:hidden">
             <button onClick={toggleNavbar}>{isOpen ? 'x' : 'Menu'}</button>
@@ -154,7 +156,7 @@ export const Navbar = () => {
               />
             </Link>
 
-            <a onClick={() => handleShowModal()} className="carrito relative">
+            <a onClick={() => handleShowModal()}>
               <img
                 src="/ShoppingCart.png"
                 alt=""
