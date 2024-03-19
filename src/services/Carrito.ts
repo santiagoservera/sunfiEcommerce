@@ -109,10 +109,10 @@ const addProductToCart = async (data: any) => {
 };
 
 //Remove a product from a cart
-const removeProductFromCart = async (carritoId: string, articuloId: string) => {
-  const url = `subItem/${carritoId}/${articuloId}`;
+const removeProductFromCart = async (carritoId: string, articuloId: number) => {
+  const url = `carrito/subItem/${carritoId}/${articuloId}`;
   try {
-    const response = await axios.put(`${baseUrl}${url}`);
+    const response = await axios.delete(`${baseUrl}${url}`);
 
     if (response.status !== 200) {
       throw new Error('Error al obtener los datos');

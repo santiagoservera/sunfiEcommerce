@@ -15,6 +15,7 @@ export interface Item {
   precio: number;
   cantidad: number;
   limiteVenta: number;
+  imagen: any;
   imagen1?: any;
   imagen2?: any;
   imagen3?: any;
