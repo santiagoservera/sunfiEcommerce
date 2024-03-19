@@ -48,7 +48,10 @@ export const Navbar = () => {
             </a>
 
             {dataLogin && dataLogin.userLogin && (
-              <Link className="block hover:text-[#9468a9] text-nowrap" href="/newProduct">
+              <Link
+                className="block hover:text-[#9468a9] text-nowrap"
+                href="/newProduct"
+              >
                 Vender
               </Link>
             )}
@@ -101,24 +104,12 @@ export const Navbar = () => {
                     >
                       Categorías
                     </a>
-                    <a
-                      className="hover:text-white transition-opacity duration-700 ease-in-out hover:opacity-80 block w-full text-center border border-black border-opacity-50"
-                      href="#"
-                    >
-                      SECCIÓN 2
-                    </a>
-                    <a
-                      className="hover:text-white transition-opacity duration-700 ease-in-out hover:opacity-80 block w-full text-center border border-black border-opacity-50"
-                      href="#"
-                    >
-                      SECCIÓN 3
-                    </a>
-                    <a
+                    <Link
                       className="hover:text-white transition-opacity duration-700 ease-in-out hover:opacity-80 block w-full text-center border-t border-black border-opacity-50"
-                      href="#"
+                      href="/newProduct"
                     >
                       Vender
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
