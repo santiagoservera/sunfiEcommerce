@@ -26,7 +26,7 @@ const fetchArticles = async (search?: string | undefined | string[]) => {
 
 export default fetchArticles;
 
-const fetchProductById = async (productId?: string | undefined | string[]) => {
+const fetchProductById = async (productId?: any) => {
   const url = `articulos/findOne/${productId}`;
   try {
     const response = await axios.get(`${baseUrl}${url}`);

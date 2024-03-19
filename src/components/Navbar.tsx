@@ -47,7 +47,7 @@ export const Navbar = () => {
               Categorías
             </a>
 
-            {dataLogin.userLogin && (
+            {dataLogin && dataLogin.userLogin && (
               <Link className="block hover:text-[#9468a9] text-nowrap" href="/newProduct">
                 Vender
               </Link>
@@ -142,7 +142,7 @@ export const Navbar = () => {
             </form>
 
             <Link
-              href={dataLogin.userLogin ? '/profile/account' : '/auth#login'}
+              href={dataLogin && dataLogin.userLogin ? '/profile/account' : '/auth#login'}
             >
               <img
                 src="/userIconNavBar.png"

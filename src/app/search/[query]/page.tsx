@@ -4,6 +4,9 @@ import LayoutEcommerce from '@/layout/LayoutEcommerce';
 
 //components imports
 
+export async function generateStaticParams() {
+  return [{ query: "fallback" }];
+}
 export default function page() {
   return (
     <>

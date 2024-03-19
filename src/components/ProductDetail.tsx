@@ -24,9 +24,8 @@ type typeCategoria = {
   nombre: string;
 };
 
-const ProductDetail = () => {
+const ProductDetail = ({ idParams }: any) => {
   const { dataLogin, setCartResponse, setShowModal } = useAuth();
-  const { payload } = dataLogin;
   const { id } = useParams();
   const router = useRouter();
   const [product, setProduct] = useState<typeDetail>();
@@ -49,7 +48,7 @@ const ProductDetail = () => {
         articuloId: product?.id,
         precio: product?.precio,
         cantidad: cantidad,
-        carritoId: payload.carritoId,
+        carritoId: dataLogin?.payload.carritoId,
       }).then((response) => {
         if (response) {
           setCartResponse(true);
@@ -65,7 +64,7 @@ const ProductDetail = () => {
     const fetchProduct = async () => {
       setIsLoading(true);
       try {
-        const productData = await fetchProductById(id);
+        const productData = await fetchProductById(idParams);
 
         if (productData) {
           // Procesamiento de imágenes (igual al código anterior)
@@ -90,7 +89,7 @@ const ProductDetail = () => {
     console.log(fetchProduct);
 
     fetchProduct();
-  }, [id]);
+  }, [idParams]);
 
   return (
     <>

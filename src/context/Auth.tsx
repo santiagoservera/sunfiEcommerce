@@ -10,7 +10,6 @@ import React, {
 } from 'react';
 
 interface MyContextType {
-  value: string;
   login: ({ username, password }: any) => void;
   register: ({
     username,
@@ -33,18 +32,33 @@ interface MyContextType {
   logout: () => void;
 }
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-const storedData = localStorage.getItem('dataLogin');
-const dataLs = storedData ? JSON.parse(storedData) : {};
+
+
 const AuthContext = createContext<MyContextType | undefined>(undefined);
 
 export const MyAuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [value, setValue] = useState<string>('Valor inicial');
-  const [dataLogin, setDataLogin] = useState<any>(dataLs);
+
+  const [dataLogin, setDataLogin] = useState<any>(null);
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [cartResponse, setCartResponse] = useState<boolean>(false);
   const [showModal, setShowModal] = useState(false);
+
+
+  useEffect(() => {
+    const fetchDataFromLocalStorage = () => {
+      const storedData = localStorage.getItem('dataLogin');
+      const dataLs = storedData ? JSON.parse(storedData) : {};
+      setDataLogin(dataLs);
+    };
+
+    fetchDataFromLocalStorage(); // Llamada a la función al montar el componente
+
+    return () => {
+      // Código de limpieza si es necesario
+    };
+  }, []);
 
   useEffect(() => {
     if (dataLogin === false) {
@@ -77,7 +91,6 @@ export const MyAuthProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <AuthContext.Provider
       value={{
-        value,
         login,
         isLogin,
         setIsLogin,

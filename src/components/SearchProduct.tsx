@@ -8,8 +8,11 @@ import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 //Components imports
 import { Loader } from './Loader';
-import imgAlt from '../../public/altImgProduct.jpeg';
-import { Router } from 'next/router';
+
+
+
+
+
 export const SearchProduct = () => {
   const searchParams = useParams();
   const [dataSearch, setDataSearch] = useState([]);
