@@ -1,8 +1,7 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/context/Auth';
 //Images
 import customerPic from '../../../public/Customer.png';
@@ -60,7 +59,6 @@ export const AsideProfile = () => {
             />
             INFORMACION DE TU CUENTA
           </button>
-
           <button
             type="button"
             onClick={() => router.push('/profile/security')}
@@ -73,7 +71,6 @@ export const AsideProfile = () => {
             />
             SEGURIDAD
           </button>
-          {/* routerLink="/ecommerce/profile/cards" routerLinkActive="bg-[#7637839C]" */}
           <button
             type="button"
             onClick={() => router.push('/profile/cards')}
@@ -89,7 +86,7 @@ export const AsideProfile = () => {
           <button
             type="button"
             onClick={handleLogout}
-            className={buttonClasses('/profile/cards')}
+            className="flex items-center m-0 rounded-md hover:bg-[#7637839C] p-3 gap-2 transition duration-300 bg-[#37133E] cursor-pointer"
           >
             <Image
               src={logoutPic}
